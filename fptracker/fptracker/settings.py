@@ -75,8 +75,11 @@ WSGI_APPLICATION = 'fptracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'fptracker',
+        'USER': '92reza',
+        'PASSWORD': '324myamirhosein',
+        'HOST': '127.0.0.1'
     }
 }
 
