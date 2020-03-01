@@ -37,3 +37,8 @@ def edit_pen(request, pen_id= None):
         'pen_id': pen_id
     }
     return render(request, "edit_pen.html", context)
+
+def delete_pen(request, pen_id):
+    pen = Pen.objects.get(id=pen_id)
+    pen.delete()
+    return redirect(index)

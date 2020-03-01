@@ -23,6 +23,7 @@
               <th>Model</th>
               <th>Nib Size</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,7 @@
                 <td>{{pen.model_name}}</td>
                 <td>{{pen.nib_size}}</td>
                 <td><a href="{% url 'edit_pen' pen.id %}">Edit</a></td>
+                <td><a href="{% url 'delete_pen' pen.id %}">Delete</a></td>
               </tr>
             {% endfor %}
           </tbody>
