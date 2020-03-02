@@ -1,2 +1,2 @@
 # FirstDjango
-##Just for Practice Django and Git! :)
+Just for Practice Django and Git! :)
