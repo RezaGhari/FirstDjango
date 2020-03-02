@@ -13,6 +13,10 @@
   </head>
   <body>
     <div class="container">
+      {% if pen_brand %}
+      <h2>Filtering by Brand: {{pen_brand}}</h2>
+      <a class="button-primary" href="{% url 'index' %}">Show All</a>
+      {% endif %}
       <div class="row">
         <div class="six columns">
           <h2>Pens</h2>
@@ -24,6 +28,7 @@
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Nib Size</th>
+                <th>Ink</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -32,9 +37,10 @@
               {% for pen in pen_list %}
                 <tr>
                   <td style="background-color:{{pen.color}};"></td>
-                  <td>{{pen.brand_name}}</td>
+                  <td><a href="{% url 'index' pen_brand=pen.brand_name %}">{{pen.brand_name}}</a></td>
                   <td>{{pen.model_name}}</td>
                   <td>{{pen.nib_size}}</td>
+                  <td style="background-color:{{pen.current_ink.color}}"></td>
                   <td><a href="{% url 'edit_object' pen.id %}">Edit</a></td>
                   <td><a href="{% url 'delete_pen' pen.id %}">Delete</a></td>
                 </tr>

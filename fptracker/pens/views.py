@@ -3,13 +3,18 @@ from pens.models import Pen, PenForm, Ink, InkForm
 
 # Create your views here.
 
-def index(request):
+def index(request, pen_brand=None):
+    if pen_brand is not None:
+        pens = Pen.objects.filter(brand_name=pen_brand)
+    else:
+        pens = Pen.objects.all()
 
-    all_pens = Pen.objects.all()
+    # all_pens = Pen.objects.all()
     all_inks = Ink.objects.all()
     context = {
-        'pen_list': all_pens,
+        'pen_list': pens,
         'ink_list': all_inks,
+        'pen_brand': pen_brand,
         'page_title': "Fountain Pen Collection",
     }
     return render(request, "index.html", context)
