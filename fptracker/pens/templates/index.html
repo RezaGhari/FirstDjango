@@ -37,7 +37,13 @@
               {% for pen in pen_list %}
                 <tr>
                   <td style="background-color:{{pen.color}};"></td>
-                  <td><a href="{% url 'index' pen_brand=pen.brand_name %}">{{pen.brand_name}}</a></td>
+                  <td>
+                    {% if current_ink %}
+                    <a href="{% url 'index' pen_brand=pen.brand_name current_ink=current_ink %}">
+                    {% else %}
+                    <a href="{% url 'index' pen_brand=pen.brand_name %}">
+                    {% endif %}
+                      {{pen.brand_name}}</a></td>
                   <td>{{pen.model_name}}</td>
                   <td>{{pen.nib_size}}</td>
                   <td style="background-color:{{pen.current_ink.color}}"></td>
@@ -72,7 +78,13 @@
                 <tr>
                   <td style="background-color:{{ink.color}};"></td>
                   <td>{{ink.brand_name}}</td>
-                  <td>{{ink.color_name}}</td>
+                  <td>
+                    {% if pen_brand %}
+                    <a href="{% url 'index' pen_brand=pen_brand current_ink=ink.id %}">
+                    {% else %}
+                    <a href="{% url 'index' current_ink=ink.id %}">
+                    {% endif %}
+                    {{ink.color_name}}</td>
                   <td>{{ink.rating}}</td>
                   <td><a href="{% url 'edit_ink' ink.id %}">Edit</a></td>
                   <td><a href="{% url 'delete_ink' ink.id %}">Delete</a></td>

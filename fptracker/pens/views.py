@@ -3,11 +3,16 @@ from pens.models import Pen, PenForm, Ink, InkForm
 
 # Create your views here.
 
-def index(request, pen_brand=None):
+def index(request, pen_brand=None, current_ink=None):
+    pens = Pen.objects.all()
+
     if pen_brand is not None:
-        pens = Pen.objects.filter(brand_name=pen_brand)
-    else:
-        pens = Pen.objects.all()
+        pens = pens.filter(brand_name=pen_brand)
+
+    if current_ink is not None:
+        pens = pens.filter(current_ink_id=current_ink)
+
+    ink = Ink.objects.get(id=current_ink)
 
     # all_pens = Pen.objects.all()
     all_inks = Ink.objects.all()
@@ -15,6 +20,8 @@ def index(request, pen_brand=None):
         'pen_list': pens,
         'ink_list': all_inks,
         'pen_brand': pen_brand,
+        'current_ink': current_ink,
+        'current_ink_name': str(ink),
         'page_title': "Fountain Pen Collection",
     }
     return render(request, "index.html", context)
