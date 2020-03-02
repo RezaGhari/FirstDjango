@@ -31,3 +31,17 @@ class PenForm(ModelForm):
         widgets = {
             'color': TextInput(attrs={'type':'color'})
         }
+
+class Ink(models.Model):
+    brand_name = models.CharField(max_length=100)
+    color = models.CharField(max_length=7)
+    color_name = models.CharField(max_length=100)
+    rating = models.IntegerField()
+
+class InkForm(ModelForm):
+    class Meta:
+        model = Ink
+        fields = "__all__"
+        widgets = {
+            'color':TextInput(attrs={'type':'color'})
+        }

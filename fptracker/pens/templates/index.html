@@ -13,34 +13,72 @@
   </head>
   <body>
     <div class="container">
-      <h2>{{page_title}}</h2>
-        <p>Number of pens: {{pen_list|length}}</p>
-        <table class="u-full-width">
-          <thead>
-            <tr>
-              <th>Color</th>
-              <th>Brand</th>
-              <th>Model</th>
-              <th>Nib Size</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for pen in pen_list %}
+      <div class="row">
+        <div class="six columns">
+          <h2>Pens</h2>
+          <p>Number of pens: {{pen_list|length}}</p>
+          <table class="u-full-width">
+            <thead>
               <tr>
-                <td style="background-color:{{pen.color}};"></td>
-                <td>{{pen.brand_name}}</td>
-                <td>{{pen.model_name}}</td>
-                <td>{{pen.nib_size}}</td>
-                <td><a href="{% url 'edit_pen' pen.id %}">Edit</a></td>
-                <td><a href="{% url 'delete_pen' pen.id %}">Delete</a></td>
+                <th>Color</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Nib Size</th>
+                <th></th>
+                <th></th>
               </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <div class="center">
-          <a href="{% url 'add_pen' %}">Add Pen</a>
+            </thead>
+            <tbody>
+              {% for pen in pen_list %}
+                <tr>
+                  <td style="background-color:{{pen.color}};"></td>
+                  <td>{{pen.brand_name}}</td>
+                  <td>{{pen.model_name}}</td>
+                  <td>{{pen.nib_size}}</td>
+                  <td><a href="{% url 'edit_object' pen.id %}">Edit</a></td>
+                  <td><a href="{% url 'delete_pen' pen.id %}">Delete</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="center">
+            <form action="{% url 'add_pen' %}">
+              <input class="button-primary" type="submit" value="Add Pen" />
+            </form>
+          </div>
+        </div>
+        <div class="six columns">
+          <h2>Inks</h2>
+          <p>Number of Inks: {{ink_list|length}}</p>
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Color</th>
+                <th>Brand</th>
+                <th>Color Name</th>
+                <th>Rating</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ink in ink_list %}
+                <tr>
+                  <td style="background-color:{{ink.color}};"></td>
+                  <td>{{ink.brand_name}}</td>
+                  <td>{{ink.color_name}}</td>
+                  <td>{{ink.rating}}</td>
+                  <td><a href="{% url 'edit_ink' ink.id %}">Edit</a></td>
+                  <td><a href="{% url 'delete_ink' ink.id %}">Delete</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="center">
+            <form action="{% url 'add_ink' %}">
+              <input class="button-primary" type="submit" value="Add Ink" />
+            </form>
+          </div>
         </div>
       </div>
     </div>
